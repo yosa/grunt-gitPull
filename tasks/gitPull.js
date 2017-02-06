@@ -70,6 +70,15 @@ module.exports = function (grunt) {
         }
         cmd = [ 'clone', repos[ i ].repo, relPath.inner ];
       }
+      
+      if(repos[i].branch) {
+          cmd.splice(1, 0, '--branch=' + repos[i].branch);
+      }
+      
+      if(repos[i].tag) {
+          cmd.splice(1, 0, '--branch=' + repos[i].tag);
+      }
+      
       commands.push( gitCMD( cmd, repos[ i ].repo ) );
     }
     // run the commands in parallel.
